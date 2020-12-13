@@ -17,6 +17,12 @@ Enjoyable supports
 Enjoyable is free software written by Joe Wreschnig with minor additions
 by Sam Deane, and is based on the Enjoy codebase written by [Yifeng Huang](http://nongraphical.com)
 and [Sam McCall](http://abstractable.net/enjoy/).
+### New in 1.3.1alpha
+Add functionality for XBox One trigger. (And other buttons)
+- no promises if this crashes your stuff, but it works ok for me!
+- You do need to go to System Preferences -> Accessibility -> Privacy, then click the (+) button and find the app and specifically allow permissions under "allow this app to control your computer".
+I have not experienced any weird side effects yet...
+
 
 ### New in 1.3
 
