@@ -22,20 +22,26 @@
 }
 
 + (NJOutput *)outputWithSerialization:(NSDictionary *)serialization {
+	NSLog(@"keypress outputw");
     NJOutputKeyPress *output = [[NJOutputKeyPress alloc] init];
     output.keyCode = [serialization[@"key"] shortValue];
     return output;
 }
 
 - (void)trigger {
+	NSLog(@"trig");
     if (_keyCode != NJKeyInputFieldEmpty) {
+		NSLog(@("%s"),_keyCode);
+		NSLog(@"not empty");
         CGEventRef keyDown = CGEventCreateKeyboardEvent(NULL, _keyCode, YES);
         CGEventPost(kCGHIDEventTap, keyDown);
+		NSLog(@"event keydown sent");
         CFRelease(keyDown);
     }
 }
 
 - (void)untrigger {
+	NSLog(@"untrig");
     if (_keyCode != NJKeyInputFieldEmpty) {
         CGEventRef keyUp = CGEventCreateKeyboardEvent(NULL, _keyCode, NO);
         CGEventPost(kCGHIDEventTap, keyUp);

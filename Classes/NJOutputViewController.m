@@ -251,6 +251,8 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
             inpFullName = [[NSString alloc] initWithFormat:@"%@ ▸ %@", cur.name, inpFullName];
         }
         self.title.stringValue = inpFullName;
+		NSLog(@"load output for");
+		NSLog(inpFullName);
     }
 
     if ([output isKindOfClass:NJOutputKeyPress.class]) {

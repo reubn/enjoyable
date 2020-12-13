@@ -278,16 +278,16 @@ static CVReturn _updateDL(CVDisplayLinkRef displayLink,
 
 - (void)activateMappingForProcess:(NSRunningApplication *)app {
     NJMapping *oldMapping = _manualMapping;
-    NSArray *names = app.possibleMappingNames;
+//    NSArray *names = app.possibleMappingNames;
     BOOL found = NO;
-    for (NSString *name in names) {
-        NJMapping *mapping = [self mappingForKey:name];
-        if (mapping) {
-            [self activateMapping:mapping];
-            found = YES;
-            break;
-        }
-    }
+//    for (NSString *name in names) {
+//        NJMapping *mapping = [self mappingForKey:name];
+//        if (mapping) {
+//            [self activateMapping:mapping];
+//            found = YES;
+//            break;
+//        }
+//    }
     
     if (!found) {
         [self activateMapping:oldMapping];
