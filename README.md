@@ -19,9 +19,11 @@ by Matt Millett and Sam Deane, and is based on the Enjoy codebase written by [Yi
 and [Sam McCall](http://abstractable.net/enjoy/).
 
 
-#### Steps
+# How to use
 1. Download the zip [here](https://github.com/millett/enjoyable/raw/master/Enjoyable3.zip) and unzip it. Enjoyable.app should be inside.
 2. Go to System Preferences -> Security & Privacy -> Accessibility, then click the (+) button, select the app (Enjoyable), and specifically allow permissions under "allow this app to control your computer".
+3. press buttons on your controller and see them light up the app. Set up your key mapping.
+4. press the little arrow in the top right corner and now, when you press buttons on your controller, it should act like you pressed those buttons on the computer!
 
 ### New in 1.3.1alpha
 Add functionality for any other random buttons/doohickeys on your controller. (Treats them as buttons)
