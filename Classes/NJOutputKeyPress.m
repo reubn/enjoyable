@@ -31,7 +31,6 @@
 - (void)trigger {
 	NSLog(@"trig");
     if (_keyCode != NJKeyInputFieldEmpty) {
-		NSLog(@("%s"),_keyCode);
 		NSLog(@"not empty");
         CGEventRef keyDown = CGEventCreateKeyboardEvent(NULL, _keyCode, YES);
         CGEventPost(kCGHIDEventTap, keyDown);

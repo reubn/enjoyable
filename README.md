@@ -25,7 +25,7 @@ Add functionality for XBox One trigger. (And other buttons)
 - You do need to
 I have not experienced any weird side effects yet...
 #### Steps
-1. Download the DMG [here](https://github.com/millett/enjoyable/raw/master/Enjoyable3.dmg)
+1. Download the DMG [here](https://github.com/millett/enjoyable/raw/master/Enjoyable3.zip)
 2. Go to System Preferences -> Security & Privacy -> Accessibility, then click the (+) button, select the app, and specifically allow permissions under "allow this app to control your computer".
 
 
