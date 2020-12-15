@@ -19,16 +19,16 @@ by Matt Millett and Sam Deane, and is based on the Enjoy codebase written by [Yi
 and [Sam McCall](http://abstractable.net/enjoy/).
 
 
-### New in 1.3.1alpha
-Add functionality for XBox One trigger. (And other buttons)
-- no promises if this crashes your stuff, but it works ok for me!
-- You do need to
-I have not experienced any weird side effects yet...
 #### Steps
-1. Download the DMG [here](https://github.com/millett/enjoyable/raw/master/Enjoyable3.zip)
-2. Go to System Preferences -> Security & Privacy -> Accessibility, then click the (+) button, select the app, and specifically allow permissions under "allow this app to control your computer".
+1. Download the zip [here](https://github.com/millett/enjoyable/raw/master/Enjoyable3.zip) and unzip it. Enjoyable.app should be inside.
+2. Go to System Preferences -> Security & Privacy -> Accessibility, then click the (+) button, select the app (Enjoyable), and specifically allow permissions under "allow this app to control your computer".
 
-
+### New in 1.3.1alpha
+Add functionality for any other random buttons/doohickeys on your controller. (Treats them as buttons)
+(Tested only with the Xbox One trigger so far!)
+- no promises if this crashes your stuff, but it works ok for me!
+ - I have not experienced any weird side effects yet...
+ 
 ### New in 1.3
 
 Added in 1.3 is support for a "centered" mode for mouse move.
