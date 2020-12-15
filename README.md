@@ -15,13 +15,18 @@ Enjoyable supports
  * Modern OS X features like resume and automatic termination
 
 Enjoyable is free software written by Joe Wreschnig with minor additions
-by Sam Deane, and is based on the Enjoy codebase written by [Yifeng Huang](http://nongraphical.com)
+by Matt Millett and Sam Deane, and is based on the Enjoy codebase written by [Yifeng Huang](http://nongraphical.com)
 and [Sam McCall](http://abstractable.net/enjoy/).
+
+
 ### New in 1.3.1alpha
 Add functionality for XBox One trigger. (And other buttons)
 - no promises if this crashes your stuff, but it works ok for me!
-- You do need to go to System Preferences -> Accessibility -> Privacy, then click the (+) button and find the app and specifically allow permissions under "allow this app to control your computer".
+- You do need to
 I have not experienced any weird side effects yet...
+#### Steps
+1. Download the DMG [here](https://github.com/millett/enjoyable/raw/master/Enjoyable3.dmg)
+2. Go to System Preferences -> Security & Privacy -> Accessibility, then click the (+) button, select the app, and specifically allow permissions under "allow this app to control your computer".
 
 
 ### New in 1.3
