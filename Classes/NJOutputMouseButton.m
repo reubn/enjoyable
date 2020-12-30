@@ -18,8 +18,9 @@
     if (s_doubleClickThreshold == 0) {
         s_doubleClickThreshold = [[NSUserDefaults.standardUserDefaults
                                  objectForKey:@"com.apple.mouse.doubleClickThreshold"] floatValue];
-        if (s_doubleClickThreshold <= 0)
+        if (s_doubleClickThreshold <= 0) {
             s_doubleClickThreshold = 1.0;
+        }
     }
     return s_doubleClickThreshold;
 }
