@@ -5,6 +5,8 @@
 //  Created by Yifeng Huang on 7/27/12.
 //
 
+#import <Cocoa/Cocoa.h>
+
 #import "NJOutputMouseButton.h"
 
 @implementation NJOutputMouseButton {

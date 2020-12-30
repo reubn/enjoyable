@@ -5,6 +5,7 @@
 //  Created by Sam McCall on 5/05/09.
 //
 
+#import <Cocoa/Cocoa.h>
 #import "NJOutputViewController.h"
 
 #import "NJMapping.h"
@@ -18,6 +19,8 @@
 #import "NJOutputMouseButton.h"
 #import "NJOutputMouseMove.h"
 #import "NJOutputMouseScroll.h"
+#import "NSView+FirstResponder.h"
+#import "NSMenu+RepresentedObjectAccessors.h"
 
 typedef NS_ENUM(NSUInteger, NJOutputRow) {
     NJOutputRowNone,

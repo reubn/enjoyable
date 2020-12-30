@@ -6,9 +6,14 @@
 //
 //
 
+#import <Cocoa/Cocoa.h>
+
 #import "NJMappingsViewController.h"
 
 #import "NJMapping.h"
+#import "NSString+FixFilename.h"
+#import "NSFileManager+UniqueNames.h"
+
 
 #define PB_ROW @"com.yukkurigames.Enjoyable.MappingRow"
 

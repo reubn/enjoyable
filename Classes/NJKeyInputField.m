@@ -10,6 +10,8 @@
 #include <Carbon/Carbon.h>
     // Only used for kVK_... codes.
 
+#import "NSView+FirstResponder.h"
+
 enum {
     kVK_Insert = 0x72,
     kVK_Power = 0x7f,

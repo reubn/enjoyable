@@ -6,6 +6,8 @@
 //
 //
 
+#import <Cocoa/Cocoa.h>
+
 @class NJMapping;
 @protocol NJMappingsViewControllerDelegate;
 

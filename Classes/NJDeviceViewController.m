@@ -6,9 +6,11 @@
 //
 //
 
+#import <Cocoa/Cocoa.h>
 #import "NJDeviceViewController.h"
 
 #import "NJInputPathElement.h"
+#import "NSOutlineView+ItemAccessors.h"
 
 @implementation NJDeviceViewController {
     NSMutableArray *_expanded;

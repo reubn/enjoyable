@@ -10,6 +10,7 @@
 #import "NJMapping.h"
 #import "NJInput.h"
 #import "NJEvents.h"
+#import "NSString+FixFilename.h"
 
 @implementation EnjoyableApplicationDelegate {
     NSStatusItem *statusItem;

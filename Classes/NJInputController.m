@@ -10,8 +10,12 @@
 #import "NJInput.h"
 #import "NJOutput.h"
 #import "NJEvents.h"
+#import "NSProcessInfo+Debugging.h"
+#import "NSRunningApplication+NJPossibleNames.h"
+#import "NSMutableArray+MoveObject.h"
 
 #import <CoreVideo/CoreVideo.h>
+#import <Cocoa/Cocoa.h>
 
 @interface NJInputController ()
 
