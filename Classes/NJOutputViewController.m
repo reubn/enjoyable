@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
     if (row != NJOutputRowScroll) {
         self.scrollDirSelect.selectedSegment = -1;
         self.scrollSpeedSlider.doubleValue = self.scrollSpeedSlider.minValue;
-        self.smoothCheck.state = NSOffState;
+        self.smoothCheck.state = NSControlStateValueOff;
         [self.scrollDirSelect resignIfFirstResponder];
         [self.scrollSpeedSlider resignIfFirstResponder];
         [self.smoothCheck resignIfFirstResponder];
@@ -158,7 +158,7 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
 - (IBAction)scrollTypeChanged:(NSButton *)sender {
     [self.radioButtons selectCellAtRow:NJOutputRowScroll column:0];
     [sender.window makeFirstResponder:sender];
-    if (sender.state == NSOnState) {
+    if (sender.state == NSControlStateValueOn) {
         self.scrollSpeedSlider.doubleValue =
             self.scrollSpeedSlider.minValue
             + (self.scrollSpeedSlider.maxValue - self.scrollSpeedSlider.minValue) / 2;
@@ -205,7 +205,7 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
             NJOutputMouseScroll *ms = [[NJOutputMouseScroll alloc] init];
             ms.direction = (int)[self.scrollDirSelect.cell tagForSegment:self.scrollDirSelect.selectedSegment];
             ms.speed = self.scrollSpeedSlider.floatValue;
-            ms.smooth = self.smoothCheck.state == NSOnState;
+            ms.smooth = self.smoothCheck.state == NSControlStateValueOn;
             return ms;
         }
         default:
@@ -283,7 +283,7 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
         BOOL smooth = [(NJOutputMouseScroll *)output smooth];
         [self.scrollDirSelect selectSegmentWithTag:direction];
         self.scrollSpeedSlider.floatValue = speed;
-        self.smoothCheck.state = smooth ? NSOnState : NSOffState;
+        self.smoothCheck.state = smooth ? NSControlStateValueOn : NSControlStateValueOff;
         self.scrollSpeedSlider.enabled = smooth;
     } else {
         [self.radioButtons selectCellAtRow:self.enabled ? 0 : -1 column:0];

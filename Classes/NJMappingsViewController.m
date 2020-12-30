@@ -16,7 +16,7 @@
 @implementation NJMappingsViewController
 
 - (void)awakeFromNib {
-    [self.mappingList registerForDraggedTypes:@[PB_ROW, NSURLPboardType]];
+    [self.mappingList registerForDraggedTypes:@[PB_ROW, NSPasteboardTypeURL]];
     [self.mappingList setDraggingSourceOperationMask:NSDragOperationCopy forLocal:NO];
 }
 
@@ -56,15 +56,15 @@
     [self.mappingListPopover showRelativeToRect:self.mappingListTrigger.bounds
                                          ofView:self.mappingListTrigger
                                   preferredEdge:NSMinXEdge];
-    self.mappingListTrigger.state = NSOnState;
+    self.mappingListTrigger.state = NSControlStateValueOn;
 }
 
 - (void)popoverWillShow:(NSNotification *)notification {
-    self.mappingListTrigger.state = NSOnState;
+    self.mappingListTrigger.state = NSControlStateValueOn;
 }
 
 - (void)popoverWillClose:(NSNotification *)notification {
-    self.mappingListTrigger.state = NSOffState;
+    self.mappingListTrigger.state = NSControlStateValueOff;
 }
 
 - (void)beginUpdates {
@@ -147,7 +147,7 @@
                          moveMappingFromIndex:srcRow
                                       toIndex:row];
         return YES;
-    } else if ([pboard.types containsObject:NSURLPboardType]) {
+    } else if ([pboard.types containsObject:NSPasteboardTypeURL]) {
         NSURL *url = [NSURL URLFromPasteboard:pboard];
         NSError *error;
         if (![self.delegate mappingsViewController:self
@@ -172,7 +172,7 @@
     if ([pboard.types containsObject:PB_ROW]) {
         [tableView setDropRow:MAX(1, row) dropOperation:NSTableViewDropAbove];
         return NSDragOperationMove;
-    } else if ([pboard.types containsObject:NSURLPboardType]) {
+    } else if ([pboard.types containsObject:NSPasteboardTypeURL]) {
         NSURL *url = [NSURL URLFromPasteboard:pboard];
         if ([url.pathExtension isEqualToString:@"enjoyable"]) {
             [tableView setDropRow:MAX(1, row) dropOperation:NSTableViewDropAbove];
@@ -207,13 +207,13 @@ forDraggedRowsWithIndexes:(NSIndexSet *)indexSet {
 writeRowsWithIndexes:(NSIndexSet *)rowIndexes
      toPasteboard:(NSPasteboard *)pboard {
     if (rowIndexes.count == 1 && rowIndexes.firstIndex != 0) {
-        [pboard declareTypes:@[PB_ROW, NSFilesPromisePboardType] owner:nil];
+        [pboard declareTypes:@[PB_ROW, (NSString*)kPasteboardTypeFileURLPromise] owner:nil];
         [pboard setString:@(rowIndexes.firstIndex).stringValue forType:PB_ROW];
-        [pboard setPropertyList:@[@"enjoyable"] forType:NSFilesPromisePboardType];
+        [pboard setPropertyList:@[@"enjoyable"] forType:(NSString*)kPasteboardTypeFileURLPromise];
         return YES;
     } else if (rowIndexes.count == 1 && rowIndexes.firstIndex == 0) {
-        [pboard declareTypes:@[NSFilesPromisePboardType] owner:nil];
-        [pboard setPropertyList:@[@"enjoyable"] forType:NSFilesPromisePboardType];
+        [pboard declareTypes:@[(NSString*)kPasteboardTypeFileURLPromise] owner:nil];
+        [pboard setPropertyList:@[@"enjoyable"] forType:(NSString*)kPasteboardTypeFileURLPromise];
         return YES;
     } else {
         return NO;
