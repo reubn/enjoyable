@@ -55,6 +55,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSRequiresAquaSystemAppearance</key>
+	<true/>
 	<key>NSSupportsAutomaticTermination</key>
 	<string>YES</string>
 	<key>NSSupportsSuddenTermination</key>
