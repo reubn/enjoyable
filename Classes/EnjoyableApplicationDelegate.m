@@ -46,10 +46,10 @@
       self.ic.currentMapping]];
 
     statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:36];
-    statusItem.image = [NSImage imageNamed:@"Status Menu Icon Disabled"];
-    statusItem.highlightMode = YES;
+    statusItem.button.image = [NSImage imageNamed:@"Status Menu Icon Disabled"];
+    statusItem.button.highlighted = YES;
     statusItem.menu = self.statusItemMenu;
-    statusItem.target = self;
+    statusItem.button.target = self;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
@@ -92,10 +92,10 @@
 }
 
 - (void)flashStatusItem {
-    if ([statusItem.image.name isEqualToString:@"Status Menu Icon"]) {
-        statusItem.image = [NSImage imageNamed:@"Status Menu Icon Disabled"];
+    if ([statusItem.button.image.name isEqualToString:@"Status Menu Icon"]) {
+        statusItem.button.image = [NSImage imageNamed:@"Status Menu Icon Disabled"];
     } else {
-        statusItem.image = [NSImage imageNamed:@"Status Menu Icon"];
+        statusItem.button.image = [NSImage imageNamed:@"Status Menu Icon"];
     }
     
 }
@@ -111,8 +111,8 @@
 }
 
 - (void)eventSimulationStarted:(NSNotification *)note {
-    self.simulatingEventsButton.state = NSOnState;
-    statusItem.image = [NSImage imageNamed:@"Status Menu Icon"];
+    self.simulatingEventsButton.state = NSControlStateValueOn;
+    statusItem.button.image = [NSImage imageNamed:@"Status Menu Icon"];
     [NSProcessInfo.processInfo
         disableAutomaticTermination:@"Event simulation running."];
     [NSWorkspace.sharedWorkspace.notificationCenter
@@ -123,8 +123,8 @@
 }
 
 - (void)eventSimulationStopped:(NSNotification *)note {
-    self.simulatingEventsButton.state = NSOffState;
-    statusItem.image = [NSImage imageNamed:@"Status Menu Icon Disabled"];
+    self.simulatingEventsButton.state = NSControlStateValueOff;
+    statusItem.button.image = [NSImage imageNamed:@"Status Menu Icon Disabled"];
     [NSProcessInfo.processInfo
         enableAutomaticTermination:@"Event simulation running."];
     [NSWorkspace.sharedWorkspace.notificationCenter
@@ -431,7 +431,7 @@
 }
 
 - (IBAction)simulatingEventsChanged:(NSButton *)sender {
-    self.ic.simulatingEvents = sender.state == NSOnState;
+    self.ic.simulatingEvents = sender.state == NSControlStateValueOn;
 }
 
 - (void)outputViewController:(NJOutputViewController *)ovc
