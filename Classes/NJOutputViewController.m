@@ -67,7 +67,7 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
     if (row != NJOutputRowMove) {
         self.mouseDirSelect.selectedSegment = -1;
         self.mouseSpeedSlider.doubleValue = self.mouseSpeedSlider.minValue;
-        self.setCheck.state = NSOffState;
+        self.setCheck.state = NSControlStateValueOff;
         [self.setCheck resignIfFirstResponder];
         [self.mouseDirSelect resignIfFirstResponder];
     } else {
@@ -196,7 +196,7 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
             NJOutputMouseMove *mm = [[NJOutputMouseMove alloc] init];
             mm.axis = (int)self.mouseDirSelect.selectedSegment;
             mm.speed = self.mouseSpeedSlider.floatValue;
-            mm.set = self.setCheck.state == NSOnState;
+            mm.set = self.setCheck.state == NSControlStateValueOn;
             return mm;
         }
         case NJOutputRowButton: {
@@ -255,7 +255,7 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
         }
         self.title.stringValue = inpFullName;
 		NSLog(@"load output for");
-		NSLog(inpFullName);
+        NSLog(@"%@", inpFullName);
     }
 
     if ([output isKindOfClass:NJOutputKeyPress.class]) {
@@ -273,7 +273,7 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
         [self.radioButtons selectCellAtRow:NJOutputRowMove column:0];
         self.mouseDirSelect.selectedSegment = [(NJOutputMouseMove *)output axis];
         self.mouseSpeedSlider.floatValue = [(NJOutputMouseMove *)output speed];
-        self.setCheck.state = [(NJOutputMouseMove *)output set] ? NSOnState : NSOffState;
+        self.setCheck.state = [(NJOutputMouseMove *)output set] ? NSControlStateValueOn : NSControlStateValueOff;
     }
     else if ([output isKindOfClass:NJOutputMouseButton.class]) {
         [self.radioButtons selectCellAtRow:NJOutputRowButton column:0];
