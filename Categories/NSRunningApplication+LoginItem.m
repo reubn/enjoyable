@@ -25,8 +25,9 @@ static const UInt32 RESOLVE_FLAGS = kLSSharedFileListNoUserInteraction
         LSSharedFileListCopySnapshot(loginItems, &seed));
     for (id obj in currentLoginItems) {
         LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)obj;
-        CFURLRef itemURL = NULL;
-        if (!LSSharedFileListItemResolve(item, RESOLVE_FLAGS, &itemURL, NULL)) {
+        CFURLRef itemURL = LSSharedFileListItemCopyResolvedURL(item, RESOLVE_FLAGS, NULL);
+        
+        if (itemURL) {
             found = ( CFEqual(itemURL, (__bridge CFURLRef)myURL) != 0);
             CFRelease(itemURL);
         }
@@ -58,8 +59,8 @@ static const UInt32 RESOLVE_FLAGS = kLSSharedFileListNoUserInteraction
         LSSharedFileListCopySnapshot(loginItems, &seed));
     for (id obj in currentLoginItems) {
         LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)obj;
-        CFURLRef itemURL = NULL;
-        if (!LSSharedFileListItemResolve(item, RESOLVE_FLAGS, &itemURL, NULL)) {
+        CFURLRef itemURL = LSSharedFileListItemCopyResolvedURL(item, RESOLVE_FLAGS, NULL);
+        if (itemURL) {
             if (CFEqual(itemURL, (__bridge CFURLRef)myURL))
                 LSSharedFileListItemRemove(loginItems, item);
             CFRelease(itemURL);
@@ -68,22 +69,24 @@ static const UInt32 RESOLVE_FLAGS = kLSSharedFileListNoUserInteraction
     CFRelease(loginItems);
 }
 
-- (BOOL)wasLaunchedAsLoginItemOrResume {
-    ProcessSerialNumber psn = { 0, kCurrentProcess };
-    NSDictionary *processInfo = CFBridgingRelease(
-        ProcessInformationCopyDictionary(
-            &psn, (UInt32)kProcessDictionaryIncludeAllInformationMask));
-    long long parent = [processInfo[@"ParentPSN"] longLongValue];
-    ProcessSerialNumber parentPsn = {
-        (parent >> 32) & 0x00000000FFFFFFFFLL,
-        parent & 0x00000000FFFFFFFFLL
-    };
-    
-    NSDictionary *parentInfo = CFBridgingRelease(
-        ProcessInformationCopyDictionary(
-            &parentPsn, (UInt32)kProcessDictionaryIncludeAllInformationMask));
-    return [parentInfo[@"FileCreator"] isEqualToString:@"lgnw"];
-}
+// old version of code to figure out whether we were launched by hand
+
+//- (BOOL)wasLaunchedAsLoginItemOrResume {
+//    ProcessSerialNumber psn = { 0, kCurrentProcess };
+//    NSDictionary *processInfo = CFBridgingRelease(
+//        ProcessInformationCopyDictionary(
+//            &psn, (UInt32)kProcessDictionaryIncludeAllInformationMask));
+//    long long parent = [processInfo[@"ParentPSN"] longLongValue];
+//    ProcessSerialNumber parentPsn = {
+//        (parent >> 32) & 0x00000000FFFFFFFFLL,
+//        parent & 0x00000000FFFFFFFFLL
+//    };
+//
+//    NSDictionary *parentInfo = CFBridgingRelease(
+//        ProcessInformationCopyDictionary(
+//            &parentPsn, (UInt32)kProcessDictionaryIncludeAllInformationMask));
+//    return [parentInfo[@"FileCreator"] isEqualToString:@"lgnw"];
+//}
 
 
 @end

@@ -53,8 +53,11 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
+    // This is hopefully good enough.
+    BOOL wasLaunchedAtLogin = [notification.userInfo[NSApplicationLaunchIsDefaultLaunchKey] boolValue];
+    
     if ([NSUserDefaults.standardUserDefaults boolForKey:@"hidden in status item"]
-        && NSRunningApplication.currentApplication.wasLaunchedAsLoginItemOrResume)
+        && wasLaunchedAtLogin)
         [self transformIntoElement:nil];
     else
         [self.window makeKeyAndOrderFront:nil];
@@ -246,8 +249,8 @@
 
 - (void)mappingConflictDidResolve:(NSAlert *)alert
                        returnCode:(NSInteger)returnCode
-                      contextInfo:(void *)contextInfo {
-    NSDictionary *userInfo = CFBridgingRelease(contextInfo);
+                      contextInfo:(NSDictionary*)contextInfo {
+    NSDictionary *userInfo = contextInfo;
     NJMapping *oldMapping = userInfo[@"old mapping"];
     NJMapping *newMapping = userInfo[@"new mapping"];
     NSInteger idx = [userInfo[@"index"] intValue];
@@ -275,12 +278,13 @@
     [conflictAlert addButtonWithTitle:NSLocalizedString(@"import and merge", @"button to merge imported mappings")];
     [conflictAlert addButtonWithTitle:NSLocalizedString(@"cancel import", @"button to cancel import")];
     [conflictAlert addButtonWithTitle:NSLocalizedString(@"import new mapping", @"button to import as new mapping")];
-    [conflictAlert beginSheetModalForWindow:self.window
-                              modalDelegate:self
-                             didEndSelector:@selector(mappingConflictDidResolve:returnCode:contextInfo:)
-                                contextInfo:(void *)CFBridgingRetain(@{ @"index": @(idx),
-                                                                        @"old mapping": mergeInto,
-                                                                        @"new mapping": mapping })];
+    NSDictionary *contextInfo = @{ @"index": @(idx),
+                                   @"old mapping": mergeInto,
+                                   @"new mapping": mapping };
+    
+    [conflictAlert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
+        [self mappingConflictDidResolve:conflictAlert returnCode:returnCode contextInfo:contextInfo];
+    }];
 }
 
 - (NSInteger)numberOfMappings:(NJMappingsViewController *)mvc {

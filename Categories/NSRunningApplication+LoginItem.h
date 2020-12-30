@@ -14,6 +14,7 @@
 - (BOOL)isLoginItem;
 - (void)addToLoginItems;
 - (void)removeFromLoginItems;
-- (BOOL)wasLaunchedAsLoginItemOrResume;
+
+// - (BOOL)wasLaunchedAsLoginItemOrResume;
 
 @end
