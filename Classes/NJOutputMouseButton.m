@@ -39,7 +39,7 @@
 
 + (NJOutput *)outputWithSerialization:(NSDictionary *)serialization {
     NJOutputMouseButton *output = [[NJOutputMouseButton alloc] init];
-    output.button = [serialization[@"button"] intValue];
+    output.button = [serialization[@"button"] unsignedIntValue];
     return output;
 }
 

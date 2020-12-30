@@ -131,7 +131,7 @@
 }
 
 - (void)mappingDidChange:(NSNotification *)note {
-    NSUInteger idx = [note.userInfo[NJMappingIndexKey] intValue];
+    NSInteger idx = [note.userInfo[NJMappingIndexKey] integerValue];
     [self.mvc changedActiveMappingToIndex:idx];
 
     if (!self.window.isVisible)
@@ -179,13 +179,13 @@
     NJMapping *mapping = [NJMapping mappingWithContentsOfURL:URL
                                                        error:&error];
     if ([[self.ic mappingForKey:mapping.name] hasConflictWith:mapping]) {
-        [self promptForMapping:mapping atIndex:self.ic.mappings.count];
+        [self promptForMapping:mapping atIndex:(NSInteger)self.ic.mappings.count];
     } else if ([self.ic  mappingForKey:mapping.name]) {
         [[self.ic mappingForKey:mapping.name] mergeEntriesFrom:mapping];
     } else if (mapping) {
         [self.mvc beginUpdates];
         [self.ic addMapping:mapping];
-        [self.mvc addedMappingAtIndex:self.ic.mappings.count - 1 startEditing:NO];
+        [self.mvc addedMappingAtIndex:(NSInteger)self.ic.mappings.count - 1 startEditing:NO];
         [self.mvc endUpdates];
         [self.ic activateMapping:mapping];
     } else {
@@ -215,7 +215,7 @@
                       NJMapping *mapping = [NJMapping mappingWithContentsOfURL:panel.URL
                                                                          error:&error];
                       if ([[self.ic mappingForKey:mapping.name] hasConflictWith:mapping]) {
-                          [self promptForMapping:mapping atIndex:self.ic.mappings.count];
+                          [self promptForMapping:mapping atIndex:(NSInteger)self.ic.mappings.count];
                       } else if ([self.ic mappingForKey:mapping.name]) {
                           [[self.ic mappingForKey:mapping.name] mergeEntriesFrom:mapping];
                       } else if (mapping) {
@@ -284,18 +284,18 @@
 }
 
 - (NSInteger)numberOfMappings:(NJMappingsViewController *)mvc {
-    return self.ic.mappings.count;
+    return (NSInteger)self.ic.mappings.count;
 }
 
 - (NJMapping *)mappingsViewController:(NJMappingsViewController *)mvc
-                      mappingForIndex:(NSUInteger)idx {
-    return self.ic.mappings[idx];
+                      mappingForIndex:(NSInteger)idx {
+    return self.ic.mappings[(NSUInteger)idx];
 }
 
 - (void)mappingsViewController:(NJMappingsViewController *)mvc
           renameMappingAtIndex:(NSInteger)index
                         toName:(NSString *)name {
-    [self.ic renameMapping:self.ic.mappings[index] to:name];
+    [self.ic renameMapping:self.ic.mappings[(NSUInteger)index] to:name];
 }
 
 - (BOOL)mappingsViewController:(NJMappingsViewController *)mvc
@@ -349,7 +349,7 @@
 - (void)mappingsViewController:(NJMappingsViewController *)mvc
                     addMapping:(NJMapping *)mapping {
     [mvc beginUpdates];
-    [mvc addedMappingAtIndex:self.ic.mappings.count startEditing:YES];
+    [mvc addedMappingAtIndex:(NSInteger)self.ic.mappings.count startEditing:YES];
     [self.ic addMapping:mapping];
     [mvc endUpdates];
     [self.ic activateMapping:mapping];
@@ -357,7 +357,7 @@
 
 - (void)mappingsViewController:(NJMappingsViewController *)mvc
            choseMappingAtIndex:(NSInteger)idx {
-    [self.ic activateMapping:self.ic.mappings[idx]];
+    [self.ic activateMapping:self.ic.mappings[(NSUInteger)idx]];
 }
 
 - (id)deviceViewController:(NJDeviceViewController *)dvc
@@ -396,7 +396,7 @@
 
 - (void)inputController:(NJInputController *)ic
  didRemoveDeviceAtIndex:(NSInteger)idx {
-    [self.dvc removedDeviceAtIndex:idx];
+    [self.dvc removedDeviceAtIndex:(NSUInteger)idx];
 }
 
 - (void)inputControllerDidStartHID:(NJInputController *)ic {
@@ -418,7 +418,7 @@
 }
 
 - (NSInteger)numberOfDevicesInDeviceList:(NJDeviceViewController *)dvc {
-    return self.ic.devices.count;
+    return (NSInteger)self.ic.devices.count;
 }
 
 - (NJDevice *)deviceViewController:(NJDeviceViewController *)dvc
@@ -438,8 +438,8 @@
 }
 
 - (NJMapping *)outputViewController:(NJOutputViewController *)ovc
-                    mappingForIndex:(NSUInteger)index {
-    return self.ic.mappings[index];
+                    mappingForIndex:(NSInteger)index {
+    return self.ic.mappings[(NSUInteger)index];
 }
 
 @end

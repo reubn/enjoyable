@@ -198,7 +198,7 @@ typedef NS_ENUM(NSUInteger, NJOutputRow) {
         }
         case NJOutputRowButton: {
             NJOutputMouseButton *mb = [[NJOutputMouseButton alloc] init];
-            mb.button = (int)[self.mouseBtnSelect.cell tagForSegment:self.mouseBtnSelect.selectedSegment];
+            mb.button = (uint32_t)[self.mouseBtnSelect.cell tagForSegment:self.mouseBtnSelect.selectedSegment];
             return mb;
         }
         case NJOutputRowScroll: {

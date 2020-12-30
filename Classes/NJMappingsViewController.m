@@ -37,7 +37,7 @@
                      moveMappingFromIndex:fromIdx
                                   toIndex:toIdx];
     [self.mappingList scrollRowToVisible:toIdx];
-    [self.mappingList selectRowIndexes:[[NSIndexSet alloc] initWithIndex:toIdx]
+    [self.mappingList selectRowIndexes:[[NSIndexSet alloc] initWithIndex:(NSUInteger)toIdx]
                   byExtendingSelection:NO];
 }
 
@@ -48,7 +48,7 @@
                      moveMappingFromIndex:fromIdx
                                   toIndex:toIdx];
     [self.mappingList scrollRowToVisible:toIdx];
-    [self.mappingList selectRowIndexes:[[NSIndexSet alloc] initWithIndex:toIdx]
+    [self.mappingList selectRowIndexes:[[NSIndexSet alloc] initWithIndex:(NSUInteger)toIdx]
                   byExtendingSelection:NO];
 }
 
@@ -78,7 +78,7 @@
 
 - (void)addedMappingAtIndex:(NSInteger)index startEditing:(BOOL)startEditing {
     [self.mappingList abortEditing];
-    [self.mappingList insertRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:index]
+    [self.mappingList insertRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:(NSUInteger)index]
                             withAnimation:startEditing ? 0 : NSTableViewAnimationSlideLeft];
     if (startEditing) {
         [self.mappingListTrigger performClick:self];
@@ -89,7 +89,7 @@
 
 - (void)removedMappingAtIndex:(NSInteger)index {
     [self.mappingList abortEditing];
-    [self.mappingList removeRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:index]
+    [self.mappingList removeRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:(NSUInteger)index]
                             withAnimation:NSTableViewAnimationEffectFade];
 }
 
@@ -103,7 +103,7 @@
     self.moveDown.enabled = [self.delegate mappingsViewController:self
                                           canMoveMappingFromIndex:index toIndex:index + 1];
     self.mappingListTrigger.title = mapping.name;
-    [self.mappingList selectRowIndexes:[NSIndexSet indexSetWithIndex:index] byExtendingSelection:NO];
+    [self.mappingList selectRowIndexes:[NSIndexSet indexSetWithIndex:(NSUInteger)index] byExtendingSelection:NO];
     [self.mappingList scrollRowToVisible:index];
     [NSUserDefaults.standardUserDefaults setInteger:index forKey:@"selected"];
    
@@ -189,7 +189,7 @@
 namesOfPromisedFilesDroppedAtDestination:(NSURL *)dropDestination
 forDraggedRowsWithIndexes:(NSIndexSet *)indexSet {
     NJMapping *toSave = [self.delegate mappingsViewController:self
-                                              mappingForIndex:indexSet.firstIndex];
+                                              mappingForIndex:(NSInteger)indexSet.firstIndex];
     NSString *filename = [[toSave.name stringByFixingPathComponent]
                           stringByAppendingPathExtension:@"enjoyable"];
     NSURL *dst = [dropDestination URLByAppendingPathComponent:filename];

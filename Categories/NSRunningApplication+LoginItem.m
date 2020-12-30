@@ -27,7 +27,7 @@ static const UInt32 RESOLVE_FLAGS = kLSSharedFileListNoUserInteraction
         LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)obj;
         CFURLRef itemURL = NULL;
         if (!LSSharedFileListItemResolve(item, RESOLVE_FLAGS, &itemURL, NULL)) {
-            found = CFEqual(itemURL, (__bridge CFURLRef)myURL);
+            found = ( CFEqual(itemURL, (__bridge CFURLRef)myURL) != 0);
             CFRelease(itemURL);
         }
         if (found)
@@ -72,7 +72,7 @@ static const UInt32 RESOLVE_FLAGS = kLSSharedFileListNoUserInteraction
     ProcessSerialNumber psn = { 0, kCurrentProcess };
     NSDictionary *processInfo = CFBridgingRelease(
         ProcessInformationCopyDictionary(
-            &psn, kProcessDictionaryIncludeAllInformationMask));
+            &psn, (UInt32)kProcessDictionaryIncludeAllInformationMask));
     long long parent = [processInfo[@"ParentPSN"] longLongValue];
     ProcessSerialNumber parentPsn = {
         (parent >> 32) & 0x00000000FFFFFFFFLL,
@@ -81,7 +81,7 @@ static const UInt32 RESOLVE_FLAGS = kLSSharedFileListNoUserInteraction
     
     NSDictionary *parentInfo = CFBridgingRelease(
         ProcessInformationCopyDictionary(
-            &parentPsn, kProcessDictionaryIncludeAllInformationMask));
+            &parentPsn, (UInt32)kProcessDictionaryIncludeAllInformationMask));
     return [parentInfo[@"FileCreator"] isEqualToString:@"lgnw"];
 }
 
