@@ -211,7 +211,7 @@
     panel.allowedFileTypes = @[ @"enjoyable", @"json", @"txt" ];
     [panel beginSheetModalForWindow:self.window
                   completionHandler:^(NSInteger result) {
-                      if (result != NSFileHandlingPanelOKButton)
+        if (result != NSModalResponseOK)
                           return;
                       [panel close];
                       NSError *error;
@@ -237,7 +237,7 @@
     panel.nameFieldStringValue = [mapping.name stringByFixingPathComponent];
     [panel beginSheetModalForWindow:self.window
                   completionHandler:^(NSInteger result) {
-                      if (result != NSFileHandlingPanelOKButton)
+        if (result != NSModalResponseOK)
                           return;
                       [panel close];
                       NSError *error;
