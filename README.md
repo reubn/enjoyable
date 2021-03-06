@@ -15,7 +15,7 @@ Enjoyable supports
  * Modern OS X features like resume and automatic termination
 
 Enjoyable is free software written by Joe Wreschnig with minor additions
-by Matt Millett, Sam Deane and Ruotger Deecke, and is based on the Enjoy codebase written by [Yifeng Huang](http://nongraphical.com)
+by Matt Millett, Sam Deane, Ruotger Deecke, and reubn, and is based on the Enjoy codebase written by [Yifeng Huang](http://nongraphical.com)
 and [Sam McCall](http://abstractable.net/enjoy/).
 
 
