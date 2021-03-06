@@ -52,7 +52,7 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>765</string>
+	<string>767</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
@@ -74,7 +74,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.13</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright Sam Deane, Joe Wreschnig, Sam McCall, Yifeng Huang, Ruotger Deecke</string>
+	<string>Copyright Sam Deane, Joe Wreschnig, Sam McCall, Yifeng Huang, Ruotger Deecke, reubn</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

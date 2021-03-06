@@ -64,7 +64,8 @@ manual available in Help Viewer via `⌘?`.
 
 ## License
 
-Copyright 2020 Matt Millet, Ruotger Deecke
+Copyright 2021 reubn
+          2020 Matt Millet, Ruotger Deecke
 		  2013 Joe Wreschnig  
           2012 Yifeng Huang  
           2009 Sam McCall, University of Otago
